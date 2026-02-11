@@ -1,6 +1,12 @@
 package hexlet.code;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import io.javalin.Javalin;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -9,7 +15,24 @@ public class App {
         return Integer.parseInt(port);
     }
 
-    public static Javalin getApp() {
+    public static Javalin getApp() throws Exception {
+
+        var hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl("jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;");
+
+        var dataSource = new HikariDataSource(hikariConfig);
+        // Получаем путь до файла в src/main/resources
+        var url = App.class.getClassLoader().getResourceAsStream("schema.sql");
+        var sql = new BufferedReader(new InputStreamReader(url))
+                .lines().collect(Collectors.joining("\n"));
+
+        // Получаем соединение, создаем стейтмент и выполняем запрос
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            statement.execute(sql);
+        }
+        BaseRepository.dataSource = dataSource;
+
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
         });
@@ -18,7 +41,7 @@ public class App {
         return app;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Javalin app = App.getApp();
         app.start(getPort());
     }

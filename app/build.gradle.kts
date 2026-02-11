@@ -35,6 +35,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
     implementation("io.javalin:javalin:6.1.3") // Обновлено до последней версии
     implementation("org.slf4j:slf4j-simple:2.0.16")
+    implementation("com.h2database:h2:2.2.220")
+    implementation("com.zaxxer:HikariCP:5.0.1")
 }
 
 tasks.test {
