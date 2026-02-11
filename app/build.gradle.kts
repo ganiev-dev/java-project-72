@@ -2,6 +2,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.52.0"
     id("org.sonarqube") version "6.2.0.5505"
     id("jacoco")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     checkstyle
     application
 }
@@ -32,6 +33,8 @@ dependencies {
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.9.3") // Движок для запуска
     testRuntimeOnly ("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
+    implementation("io.javalin:javalin:6.1.3") // Обновлено до последней версии
+    implementation("org.slf4j:slf4j-simple:2.0.16")
 }
 
 tasks.test {
