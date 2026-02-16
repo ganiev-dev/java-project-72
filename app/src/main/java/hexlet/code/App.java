@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.sql.DriverManager;
 import java.util.stream.Collectors;
 
 import gg.jte.ContentType;
@@ -23,8 +22,7 @@ public class App {
     public static Javalin getApp() throws Exception {
 
         var hikariConfig = new HikariConfig();
-        var dbUrl = getDatabaseUrl();
-        hikariConfig.setJdbcUrl(dbUrl);
+        hikariConfig.setJdbcUrl(getDatabaseUrl());
 
         var dataSource = new HikariDataSource(hikariConfig);
         var sql = readResourceFile("schema.sql");
