@@ -36,8 +36,8 @@ public class App {
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
         });
-        app.get("/health", ctx -> ctx.result("OK"));
         app.get("/", ctx -> ctx.result("Hello world!"));
+        app.get("/health", ctx -> ctx.result("Ok"));
         return app;
     }
 
