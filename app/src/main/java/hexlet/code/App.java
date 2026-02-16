@@ -6,6 +6,7 @@ import io.javalin.Javalin;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.DriverManager;
 import java.util.stream.Collectors;
 
 public class App {
@@ -19,6 +20,14 @@ public class App {
 
         var hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl("jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;");
+        try (var conn = DriverManager.getConnection("jdbc:h2:mem:project")) {
+
+            var sql = "CREATE TABLE users (id BIGINT PRIMARY KEY AUTO_INCREMENT, "
+                    + "name VARCHAR(255), created_at TIMESTAMP)";
+            try (var statement = conn.createStatement()) {
+                statement.execute(sql);
+            }
+        }
 
         var dataSource = new HikariDataSource(hikariConfig);
         // Получаем путь до файла в src/main/resources

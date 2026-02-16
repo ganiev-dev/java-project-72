@@ -1,15 +1,5 @@
-DROP TABLE IF EXISTS courses;
-
-CREATE TABLE courses (
-                         id SERIAL PRIMARY KEY,
-                         name VARCHAR(255) NOT NULL,
-                         description TEXT
-);
-
-DROP TABLE IF EXISTS cars;
-
-CREATE TABLE cars (
-                      id SERIAL PRIMARY KEY,
-                      make VARCHAR(255) NOT NULL,
-                      model VARCHAR(255) NOT NULL
-);
+CREATE TABLE IF NOT EXISTS urls (
+        id BIGSERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP NOT NULL
+    );
