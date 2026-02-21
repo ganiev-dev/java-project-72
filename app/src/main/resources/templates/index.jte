@@ -12,15 +12,15 @@
 <body>
 
 <div class="container">
-@if(page != null && page.getFlash() != null)
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        ${page.getFlash()}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if(page != null && page.getFlash() != null)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            ${page.getFlash()}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <form action="/urls" method="post">
         <input class="form-control" type="text" name="url" placeholder="Адрес сайта">
-      <input type="submit" value="Добавить в базу" />
+        <input type="submit" value="Добавить в базу" />
     </form>
 </div>
 

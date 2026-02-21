@@ -85,7 +85,6 @@ public class App {
             var urls = UrlRepository.getEntities();
             var header = "Добавленные урл";
             var page = new UrlsPage(urls, header);
-            page.setFlash(ctx.consumeSessionAttribute("flash"));
             ctx.render("urls.jte", model("page", page));
         });
 
@@ -122,11 +121,9 @@ public class App {
     }
 
     private static String getDatabaseUrl() {
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
-        if (dbUrl != null && !dbUrl.isEmpty()) {
-            return dbUrl;
-        }
-        return "jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;";
+        // Получаем url базы данных из переменной окружения DATABASE_URL
+        // Если она не установлена, используем базу в памяти
+        return System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
     }
 
     private static TemplateEngine createTemplateEngine() {
