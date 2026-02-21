@@ -66,12 +66,16 @@ tasks.jacocoTestReport {
     }
 }
 
-// --- Настройки shadowJar ---
+
 tasks.shadowJar {
     archiveBaseName.set("app")
-    archiveClassifier.set("")
-    archiveVersion.set("")
-    mergeServiceFiles() // важно для JDBC драйверов
+    archiveVersion.set("1.0-SNAPSHOT")
+    archiveClassifier.set("all") // => app-1.0-SNAPSHOT-all.jar
+
+    // объединение service files (важно для JDBC драйверов)
+    mergeServiceFiles()
+
+    // манифест с указанием главного класса
     manifest {
         attributes("Main-Class" to application.mainClass.get())
     }
