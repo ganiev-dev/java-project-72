@@ -51,6 +51,7 @@ public class App {
         });
 
         app.get("/", ctx -> {
+            ctx.render("index.jte");
             var header = "Главная";
             var page = new IndexPage(header);
             page.setFlash(ctx.consumeSessionAttribute("flash"));
@@ -80,11 +81,13 @@ public class App {
 
             ctx.redirect("/urls");
         });
+        app.get("/health", ctx -> ctx.result("Ok"));
 
         app.get("/urls", ctx -> {
             var urls = UrlRepository.getEntities();
             var header = "Добавленные урл";
             var page = new UrlsPage(urls, header);
+            page.setFlash(ctx.consumeSessionAttribute("flash"));
             ctx.render("urls.jte", model("page", page));
         });
 
@@ -101,6 +104,14 @@ public class App {
         });
 
         return app;
+
+
+
+
+
+
+
+
     }
 
     public static void main(String[] args) throws Exception {
