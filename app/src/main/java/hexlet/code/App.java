@@ -122,9 +122,11 @@ public class App {
     }
 
     private static String getDatabaseUrl() {
-        // Получаем url базы данных из переменной окружения DATABASE_URL
-        // Если она не установлена, используем базу в памяти
-        return System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        if (dbUrl != null && !dbUrl.isEmpty()) {
+            return dbUrl;
+        }
+        return "jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;";
     }
 
     private static TemplateEngine createTemplateEngine() {
