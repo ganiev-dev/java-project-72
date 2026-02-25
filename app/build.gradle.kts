@@ -20,7 +20,7 @@ repositories {
 
 sonar {
     properties {
-        property("sonar.projectKey", "ganiev-dev_java-project-71")
+        property("sonar.projectKey", "ganiev-dev_java-project-72")
         property("sonar.organization", "ganiev-dev")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.junit.reportPaths", "build/test-results/test")
