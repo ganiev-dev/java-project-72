@@ -7,6 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import io.javalin.testtools.JavalinTest;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
+import static hexlet.code.App.urlNormalizer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AppTest {
@@ -57,4 +61,15 @@ class AppTest {
             assertThat(body).contains("Url " + id).contains(url);
         });
     }
+
+    @Test
+    void testUrlNormalizer() throws URISyntaxException, MalformedURLException {
+        String input = "https://github.com/23545647";
+        String expected = "https://github.com";
+        String result = urlNormalizer(input);
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+
 }

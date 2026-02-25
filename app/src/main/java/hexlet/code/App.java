@@ -103,14 +103,6 @@ public class App {
         });
 
         return app;
-
-
-
-
-
-
-
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -141,7 +133,7 @@ public class App {
         return templateEngine;
     }
 
-    private static String urlNormalizer(String inputUrl) throws URISyntaxException, MalformedURLException {
+    static String urlNormalizer(String inputUrl) throws URISyntaxException, MalformedURLException {
         if (!inputUrl.startsWith("http://") && !inputUrl.startsWith("https://")) {
             throw new MalformedURLException();
         }
