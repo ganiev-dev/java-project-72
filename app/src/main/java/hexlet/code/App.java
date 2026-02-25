@@ -51,7 +51,6 @@ public class App {
         });
 
         app.get("/", ctx -> {
-            ctx.render("index.jte");
             var header = "Главная";
             var page = new IndexPage(header);
             page.setFlash(ctx.consumeSessionAttribute("flash"));
@@ -132,8 +131,6 @@ public class App {
     }
 
     private static String getDatabaseUrl() {
-        // Получаем url базы данных из переменной окружения DATABASE_URL
-        // Если она не установлена, используем базу в памяти
         return System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
     }
 

@@ -29,22 +29,23 @@ sonar {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
+    dependencies {
 
-    implementation("io.javalin:javalin:6.1.3")
-    implementation("io.javalin:javalin-rendering:6.1.3")
-    implementation("org.slf4j:slf4j-simple:2.0.16")
-    implementation("com.zaxxer:HikariCP:5.0.1")
-    implementation("org.postgresql:postgresql:42.7.2")
-    implementation("com.h2database:h2:2.2.220")
+        implementation("io.javalin:javalin:6.1.3")
+        implementation("io.javalin:javalin-rendering:6.1.3")
+        implementation("org.slf4j:slf4j-simple:2.0.16")
+        implementation("com.zaxxer:HikariCP:5.0.1")
+        implementation("org.postgresql:postgresql:42.7.2")
+        testImplementation("com.h2database:h2:2.2.224")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+        testImplementation("io.javalin:javalin-testtools:6.1.3")
+        testImplementation("org.assertj:assertj-core:3.25.3")
 
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+        implementation("gg.jte:jte:3.1.9")
+        compileOnly("org.projectlombok:lombok:1.18.30")
+        annotationProcessor("org.projectlombok:lombok:1.18.30")
+    }
 
-    implementation("gg.jte:jte:3.1.9")
 }
 
 tasks.test {
