@@ -30,7 +30,7 @@ class AppTest {
     @Test
     public void testUrlsPage() {
         JavalinTest.test(app, (server, client) -> {
-            var url = "https://github.com/";
+            var url = "https://ru.hexlet.io/";
             var entity = new Url(url);
             UrlRepository.save(entity);
 
